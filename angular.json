@@ -33,7 +33,8 @@
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
               "src/styles.scss",
-              "src/custom-theme.scss"
+              "src/custom-theme.scss",
+              "./node_modules/bulma/css/bulma.css"
               
             ],
             "scripts": []
