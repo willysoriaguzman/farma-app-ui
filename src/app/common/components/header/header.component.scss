@@ -1,0 +1,22 @@
+.app-header{
+    background-image: linear-gradient(to right, red, yellow, yellow, green,);
+    // background-image: linear-gradient(red, yellow, yellow, green);
+}
+.example-spacer {
+    flex: 1 1 auto;
+  }
+  .mat-button{
+    text-shadow: 2px 2px 4px #000000;
+    font-size: larger;
+  }
+
+  .mat-toolbar-row{
+    span:first-of-type{
+        text-shadow: 2px 2px 4px #000000;
+        font-size: larger;
+  }
+}
+.username{
+    font-style: italic;
+    text-shadow: none;
+}

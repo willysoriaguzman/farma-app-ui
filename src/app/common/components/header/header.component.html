@@ -1,0 +1,67 @@
+<!-- Toolbar -->
+<mat-toolbar color="primary" class="app-header">
+  
+    <mat-toolbar-row *ngIf="!isLoggedIn">
+      <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+        <mat-icon>favorite</mat-icon>
+      </button>
+      <span>Farmacias Nacionales</span>
+      <span class="example-spacer"></span>
+      <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+        <mat-icon>menu</mat-icon>
+      </button>
+    </mat-toolbar-row>
+  
+    <mat-toolbar-row *ngIf="isLoggedIn">
+      <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+        <mat-icon>favorite</mat-icon>
+      </button>
+      <button mat-button >Stock</button>
+      <button mat-button >Productos</button>
+      <button mat-button >Vender</button>
+      <button mat-button [matMenuTriggerFor]="entries">Ingresar</button>
+      <button mat-button >Distribuidoras</button>
+      <button mat-button [matMenuTriggerFor]="reports" (mouseenter)="menuTrigger.openMenu()" #menuTrigger="matMenuTrigger">
+        Reportes
+      </button>
+      <mat-menu #entries="matMenu">
+        <button mat-menu-item>Ingresar</button>
+        <button mat-menu-item>Salir</button>
+      </mat-menu>
+
+      <mat-menu #reports="matMenu">
+        <span (mouseleave)="menuTrigger.closeMenu()">
+        <button mat-menu-item>Mis Ingresos</button>
+        <button mat-menu-item>Pedidos</button>
+        <button mat-menu-item>Vencimientos</button>
+        <button mat-menu-item>Mis Salidas</button>
+        <button mat-menu-item>Productos Por Distribuidora</button>
+      </span>
+      </mat-menu>
+
+      <span class="example-spacer"></span>
+      <span>Hola, <span class="username">{{username}}</span>!</span>
+      
+      <button mat-icon-button class="example-icon" [matMenuTriggerFor]="menu" aria-label="Menu">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item>
+          <mat-icon>dialpad</mat-icon>
+          <span>Opciones</span>
+        </button>
+        <button mat-menu-item (click)="logout()">
+          <mat-icon>face</mat-icon>
+          <span>Salir</span>
+        </button>
+      </mat-menu>
+    </mat-toolbar-row>
+  </mat-toolbar>
+  <!-- <nav *ngIf="isLoggedIn" class="breadcrumb has-arrow-separator" aria-label="breadcrumbs">
+    <ul>
+      <li><a href="#">Inicio</a></li>
+      <li><a href="#">Reportes</a></li>
+      <li><a href="#">Pedidos</a></li>
+      <li class="is-active"><a href="#" aria-current="page">Breadcrumb</a></li>
+    </ul>
+  </nav> -->
