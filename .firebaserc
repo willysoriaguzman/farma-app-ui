@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "firedbtest-41587"
+  },
+  "targets": {
+    "firedbtest-41587": {
+      "hosting": {
+        "farma-app": [
+          "firedbtest-41587"
+        ]
+      }
+    }
+  }
+}

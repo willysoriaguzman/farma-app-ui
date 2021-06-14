@@ -11,4 +11,4 @@ import { CommonRoutingModule } from './common-routing.module';
     CommonRoutingModule
   ]
 })
-export class CommonModule { }
+export class CommonLocalModule { }

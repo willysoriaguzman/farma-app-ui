@@ -35,7 +35,6 @@
               "src/styles.scss",
               "src/custom-theme.scss",
               "./node_modules/bulma/css/bulma.css"
-              
             ],
             "scripts": []
           },
@@ -58,7 +57,7 @@
                 {
                   "type": "initial",
                   "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumError": "2mb"
                 },
                 {
                   "type": "anyComponentStyle",
@@ -128,6 +127,10 @@
               "devServerTarget": "farma-app:serve:production"
             }
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {}
         }
       }
     }

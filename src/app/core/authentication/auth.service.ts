@@ -12,14 +12,18 @@ export class AuthService {
 
   constructor() { }
 
-  login(username: any, password: any){
-    if( username !== 'no' && password !== 'no'){
+  login(username: string, password: string){
+    if( username.toLowerCase() === 'admin' && password.toLowerCase() === 'admin'){
       this.currentUsername = username;
       this.isSuccsesfulLogin = true
+
       this.isLoggedIn$.next(true);
+      sessionStorage.setItem('isLoggedIn', 'true');
+      sessionStorage.setItem('username', username);
     }else{
       this.currentUsername = null;
       this.isSuccsesfulLogin = false
+      sessionStorage.setItem('isLoggedIn', 'false');
       this.isLoggedIn$.next(false);
     }
     return this.isSuccsesfulLogin;
@@ -27,13 +31,22 @@ export class AuthService {
 
   logout(){
     this.isLoggedIn$.next(false);
+    sessionStorage.clear();
   }
 
   isLoggedIn(){
+    const loggedValue = sessionStorage.getItem('isLoggedIn');
+    if(loggedValue)
+      this.isLoggedIn$.next(JSON.parse(loggedValue));
+    else
+      this.isLoggedIn$.next(false);
+
     return this.isLoggedIn$.asObservable();
   }
 
   getCurrentUsername(){
+    const username = sessionStorage.getItem('username');
+    this.currentUsername = username ? username : null;
     return this.currentUsername;
   }
 }

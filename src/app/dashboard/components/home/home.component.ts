@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { NGXLogger } from 'ngx-logger';
 import { AuthService } from 'src/app/core/authentication/auth.service';
 
 @Component({
@@ -10,9 +11,11 @@ import { AuthService } from 'src/app/core/authentication/auth.service';
 export class HomeComponent implements OnInit {
 
   constructor(private auth: AuthService,
-    private router: Router) { }
+    private router: Router,
+    private logger: NGXLogger) { }
 
   ngOnInit(): void {
+    this.logger.trace('Home ngOninit');
     if(!this.auth.isSuccsesfulLogin){
       // this.router.navigate(['/']);
     }

@@ -10,13 +10,12 @@
     font-size: larger;
   }
 
-  .mat-toolbar-row{
-    span:first-of-type{
-        text-shadow: 2px 2px 4px #000000;
-        font-size: larger;
-  }
+.italic-title{
+  text-shadow: 2px 2px 4px #000000;
+  font-size: larger;
 }
 .username{
-    font-style: italic;
+    font-style: oblique;
     text-shadow: none;
+    color: yellow;
 }

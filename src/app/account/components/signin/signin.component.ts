@@ -34,6 +34,8 @@ export class SigninComponent implements OnInit {
     this.logger.debug('INFO: submit()', this.form.get('username')?.value);
     if(this.auth.login(this.form.get('username')?.value, this.form.get('password')?.value)){
       this.router.navigate(['/dashboard']);
+    }else{
+      this.error = 'Credenciales incorrectas.'
     }
     
     // if (this.form.valid) {

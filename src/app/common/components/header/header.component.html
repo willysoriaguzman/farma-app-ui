@@ -2,10 +2,10 @@
 <mat-toolbar color="primary" class="app-header">
   
     <mat-toolbar-row *ngIf="!isLoggedIn">
-      <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
-        <mat-icon>favorite</mat-icon>
+      <button routerLink='/dashboard/' mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+        <mat-icon routerLink='/dashboard/'>favorite</mat-icon>
       </button>
-      <span>Farmacias Nacionales</span>
+      <span class="italic-title">Farmacias Nacionales</span>
       <span class="example-spacer"></span>
       <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
         <mat-icon>menu</mat-icon>
@@ -16,9 +16,9 @@
       <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
         <mat-icon>favorite</mat-icon>
       </button>
-      <button mat-button >Stock</button>
-      <button mat-button >Productos</button>
-      <button mat-button >Vender</button>
+      <!-- <button mat-button >Stock</button> -->
+      <button mat-button routerLink='/dashboard/products' >Productos</button>
+      <!-- <button mat-button >Vender</button>
       <button mat-button [matMenuTriggerFor]="entries">Ingresar</button>
       <button mat-button >Distribuidoras</button>
       <button mat-button [matMenuTriggerFor]="reports" (mouseenter)="menuTrigger.openMenu()" #menuTrigger="matMenuTrigger">
@@ -37,10 +37,10 @@
         <button mat-menu-item>Mis Salidas</button>
         <button mat-menu-item>Productos Por Distribuidora</button>
       </span>
-      </mat-menu>
+      </mat-menu> -->
 
       <span class="example-spacer"></span>
-      <span>Hola, <span class="username">{{username}}</span>!</span>
+      <span>Usuario: <span class="username">{{username}}</span></span>
       
       <button mat-icon-button class="example-icon" [matMenuTriggerFor]="menu" aria-label="Menu">
         <mat-icon>menu</mat-icon>
