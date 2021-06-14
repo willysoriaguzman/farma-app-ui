@@ -8,6 +8,7 @@ import { map } from 'rxjs/operators';
 import Product from '../../models/product.model';
 import { ProductService } from '../../services/product.service';
 import { DataSource } from '@angular/cdk/table';
+import { NGXLogger } from 'ngx-logger';
 
 @Component({
   selector: 'app-product',
@@ -21,7 +22,7 @@ export class ProductComponent implements OnInit, AfterViewInit  {
   currentTutorial?: Product;
   currentIndex = -1;
   title = '';
-  displayedColumns: string[] = ['key', 'NombreComercial', 'Code', 'Stock'];
+  displayedColumns: string[] = ['key', 'NombreComercial', 'Code', 'Stock', 'Stock_2'];
   dataSource!: MatTableDataSource<Product>;
 
   @ViewChild(MatSort)
@@ -30,7 +31,8 @@ export class ProductComponent implements OnInit, AfterViewInit  {
   paginator!: MatPaginator;
   
   // constructor(private db: AngularFireDatabase) { 
-  constructor(private productService: ProductService) { 
+  constructor(private productService: ProductService,
+    private logger: NGXLogger) { 
    //  this.tutorials = db.list('tutorials').valueChanges();
   }
 
@@ -55,6 +57,7 @@ export class ProductComponent implements OnInit, AfterViewInit  {
     ).subscribe(data => {
       this.tutorials = data;
       this.dataSource = new MatTableDataSource(data as Product[]);
+      this.logger.log('INFO: data', data);
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
 
