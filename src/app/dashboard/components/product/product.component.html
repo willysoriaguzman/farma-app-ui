@@ -1,5 +1,5 @@
 
-<h4>Productos</h4>
+<h4>Stock Productos por Sucursal</h4>
 <div class="mat-elevation-z8">
 <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
 
@@ -22,15 +22,20 @@
     </ng-container>
   
     <!-- Stock Column -->
-    <ng-container matColumnDef="Stock">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Stock </th>
-      <td mat-cell *matCellDef="let element"> {{element.Stock[0]}} </td>
+    <ng-container matColumnDef="Stock_america">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> America </th>
+      <td mat-cell *matCellDef="let element"> {{element.Stock_america}} </td>
     </ng-container>
 
     <!-- Stock Column -->
-    <ng-container matColumnDef="Stock_2">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Stock_2 </th>
-      <td mat-cell *matCellDef="let element"> {{element.Stock_2}} </td>
+    <ng-container matColumnDef="Stock_papapaulo">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Papa Paulo </th>
+      <td mat-cell *matCellDef="let element"> {{element.Stock_papapaulo}} </td>
+    </ng-container>
+    <!-- Stock Column -->
+    <ng-container matColumnDef="Stock_sanmartin">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> San Martin </th>
+      <td mat-cell *matCellDef="let element"> {{element.Stock_sanmartin}} </td>
     </ng-container>
   
     <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>

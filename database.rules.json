@@ -9,7 +9,15 @@
     },
     "restricted_access":{
       ".read": true,
-      ".write": true
+      ".write": true,
+      "secret_document":{
+        "productos":{
+          "recordset":{
+            ".indexOn": ["NombreComercial"]
+
+          }
+        }
+      }
     }
   }
 }

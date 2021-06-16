@@ -9,6 +9,7 @@ import Product from '../../models/product.model';
 import { ProductService } from '../../services/product.service';
 import { DataSource } from '@angular/cdk/table';
 import { NGXLogger } from 'ngx-logger';
+import { ProductNodeService } from '../../services/product-node.service';
 
 @Component({
   selector: 'app-product',
@@ -22,7 +23,7 @@ export class ProductComponent implements OnInit, AfterViewInit  {
   currentTutorial?: Product;
   currentIndex = -1;
   title = '';
-  displayedColumns: string[] = ['key', 'NombreComercial', 'Code', 'Stock', 'Stock_2'];
+  displayedColumns: string[] = ['key', 'NombreComercial', 'Code', 'Stock_america', 'Stock_papapaulo', 'Stock_sanmartin'];
   dataSource!: MatTableDataSource<Product>;
 
   @ViewChild(MatSort)
@@ -32,11 +33,17 @@ export class ProductComponent implements OnInit, AfterViewInit  {
   
   // constructor(private db: AngularFireDatabase) { 
   constructor(private productService: ProductService,
+    private productNodeService: ProductNodeService,
     private logger: NGXLogger) { 
    //  this.tutorials = db.list('tutorials').valueChanges();
   }
 
   ngOnInit(): void {
+    // TODO: Call farma-node-api to refresh firebase data
+    this.productNodeService.refreshProducts().subscribe( data => {
+      this.logger.trace('INFO: product onInit',data);
+    });
+    // Get Products from firebase
     this.retrieveTutorials();
   }
   ngAfterViewInit() {

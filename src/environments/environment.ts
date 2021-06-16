@@ -12,7 +12,8 @@ export const environment = {
     storageBucket: "firedbtest-41587.appspot.com",
     messagingSenderId: "632572407516",
     appId: "1:632572407516:web:03b57ff11130a9ca5e0e19"
-  }
+  },
+  nodeServer: 'http://localhost:5000'
 };
 
 /*
