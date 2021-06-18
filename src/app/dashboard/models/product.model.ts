@@ -3,7 +3,7 @@ export default class Product {
     NombreComercial?: string;
     Code?: string;
     Stock?: [] | null;
-    Stock_2?: number | null;
-    Stock_1?: string | null;
-    Stock_0?: string | null;
+    Stock_america?: number;
+    Stock_papapaulo?: number;
+    Stock_sanmartin?: number;
   }

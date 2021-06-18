@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
+import { AngularFireDatabase, AngularFireList, AngularFireObject } from '@angular/fire/database';
 import { NGXLogger } from 'ngx-logger';
 import Product from '../models/product.model';
 
@@ -8,26 +8,34 @@ import Product from '../models/product.model';
 })
 export class ProductService {
 
-  private dbPath = '/restricted_access/secret_document/productos/recordset';
-  productsRef: AngularFireList<Product>;
+  private basePAth = '/restricted_access';
+  private dbPath = '/secret_document/productos/';
+  private refreshKeyPath = '/restricted_access/secret_document/';
+  productsRef: AngularFireList<any>;
+  customRefreshRef;
 
   constructor(private db: AngularFireDatabase,
     private logger: NGXLogger) {
-    this.productsRef = db.list(this.dbPath);
+    this.productsRef = db.list(this.basePAth + this.dbPath);
+    this.customRefreshRef = db.database.ref(this.basePAth + '/customRefresh');
   }
 
-  getAll(): AngularFireList<Product> {
+  getAll(): AngularFireList<any> {
     this.logger.log('INFO: getAll()');
     this.logger.log(this.productsRef);
     return this.productsRef;
   }
 
-  create(product: Product): any {
+  create(product: any): any {
     return this.productsRef.push(product);
   }
 
   update(key: string, value: any): Promise<void> {
     return this.productsRef.update(key, value);
+  }
+
+  updateCustomRefresh(value: string): Promise<void> {
+    return this.customRefreshRef.update({'isCustomRefresh':value});
   }
 
   delete(key: string): Promise<void> {

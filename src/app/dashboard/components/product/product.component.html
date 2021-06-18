@@ -1,47 +1,99 @@
 
-<h4>Stock Productos por Sucursal</h4>
+<h2 class="mt-4">Stock Productos por Sucursal</h2>
+<mat-form-field>
+  <mat-label>Buscar</mat-label>
+  <input matInput (keyup)="applyFilter($event)" placeholder="Ej. Aspirina, 27557" #input>
+</mat-form-field>
 <div class="mat-elevation-z8">
-<table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+<table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8" multiTemplateDataRows
+  >
 
-    <!-- key Column -->
     <ng-container matColumnDef="key">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> No. </th>
       <td mat-cell *matCellDef="let element"> {{element.key}} </td>
     </ng-container>
   
-    <!-- NombreComercial Column -->
     <ng-container matColumnDef="NombreComercial">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> NombreComercial </th>
-      <td mat-cell *matCellDef="let element"> {{element.NombreComercial}} </td>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre Comercial </th>
+      <td mat-cell *matCellDef="let element" [innerHTML]="element.NombreComercial | highlightPipe:input.value"></td>
     </ng-container>
   
-    <!-- Code Column -->
     <ng-container matColumnDef="Code">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Code </th>
-      <td mat-cell *matCellDef="let element"> {{element.Code}} </td>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Código </th>
+      <td mat-cell *matCellDef="let element" [innerHTML]="element.Code | highlightPipe:input.value"></td>
     </ng-container>
   
-    <!-- Stock Column -->
     <ng-container matColumnDef="Stock_america">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> America </th>
-      <td mat-cell *matCellDef="let element"> {{element.Stock_america}} </td>
+      <td mat-cell *matCellDef="let element"> {{element.Stock_america | stockOnlyPipe}} </td>
     </ng-container>
 
-    <!-- Stock Column -->
+    <ng-container matColumnDef="empty-description">
+      <th mat-header-cell *matHeaderCellDef></th>
+    </ng-container>
+
+    <ng-container matColumnDef="cost-description">
+      <th mat-header-cell *matHeaderCellDef> Stock </th>
+    </ng-container>
+
     <ng-container matColumnDef="Stock_papapaulo">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Papa Paulo </th>
-      <td mat-cell *matCellDef="let element"> {{element.Stock_papapaulo}} </td>
+      <td mat-cell *matCellDef="let element"> {{element.Stock_papapaulo | stockOnlyPipe}} </td>
     </ng-container>
-    <!-- Stock Column -->
+
     <ng-container matColumnDef="Stock_sanmartin">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> San Martin </th>
-      <td mat-cell *matCellDef="let element"> {{element.Stock_sanmartin}} </td>
+      <td mat-cell *matCellDef="let element"> {{element.Stock_sanmartin | stockOnlyPipe}} </td>
     </ng-container>
+
+    <!-- <ng-container matColumnDef="{{column}}" *ngFor="let column of displayedColumns">
+      <th mat-header-cell *matHeaderCellDef> {{column}} </th>
+      <td mat-cell *matCellDef="let element"> {{element[column]}} </td>
+    </ng-container> -->
+
+    <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
+  <ng-container matColumnDef="expandedDetail">
+    <td mat-cell *matCellDef="let element" [attr.colspan]="displayedColumns.length">
+      <div class="example-element-detail"
+           [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+        <div class="example-element-diagram">
+          <div class="example-element-position"> America </div>
+          <div class="example-element-symbol"> {{element.Stock_america}} </div>
+          <div class="example-element-name"> Cantidad - Precio </div>
+          <div class="example-element-weight">  </div>
+        </div>
+        <div class="example-element-diagram2">
+          <div class="example-element-position"> Papa Paulo </div>
+          <div class="example-element-symbol"> {{element.Stock_papapaulo}} </div>
+          <div class="example-element-name"> Cantidad - Precio </div>
+          <div class="example-element-weight">  </div>
+        </div>
+        <div class="example-element-diagram3">
+          <div class="example-element-position"> San Martin </div>
+          <div class="example-element-symbol"> {{element.Stock_sanmartin}} </div>
+          <div class="example-element-name"> Cantidad - Precio </div>
+          <div class="example-element-weight">  </div>
+        </div>
+        <div class="example-element-description">
+          <span class="example-element-description-attribution">  </span>
+        </div>
+      </div>
+    </td>
+  </ng-container>
   
     <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    <!-- <tr mat-header-row *matHeaderRowDef="['empty-description','empty-description','empty-description','cost-description','cost-description','cost-description']"
+    class="second-header-row"></tr> -->
+    <tr mat-row *matRowDef="let element; columns: displayedColumns;"
+    [class.example-expanded-row]="expandedElement === element"
+      (click)="expandedElement = expandedElement === element ? null : element"></tr>
+    <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
+    <!-- Row shown when there is no matching data. -->
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="4">No hay datos que coincidan con "{{input.value}}"</td>
+    </tr>
   </table>
-  <mat-paginator [pageSizeOptions]="[10, 20, 50]" showFirstLastButtons></mat-paginator>
+  <mat-paginator [pageSizeOptions]="[15, 100, 500, 1000]" showFirstLastButtons></mat-paginator>
 </div>
 <div class="list row">
     <div class="col-md-6">

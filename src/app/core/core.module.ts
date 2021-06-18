@@ -4,11 +4,12 @@ import { RouterModule } from '@angular/router';
 import { CoreRoutingModule } from './core-routing.module';
 import { HeaderComponent } from '../common/components/header/header.component';
 import { AngularMaterialModule } from '../angular-material.module';
+import { HighlightPipe } from '../common/Pipes/highlight.pipe';
 
 
 @NgModule({
   declarations: [
-    HeaderComponent
+    HeaderComponent,
   ],
   imports: [
     CommonModule,
@@ -17,7 +18,7 @@ import { AngularMaterialModule } from '../angular-material.module';
     RouterModule
   ],
   exports:[
-    HeaderComponent
+    HeaderComponent,
   ]
 })
 export class CoreModule { }

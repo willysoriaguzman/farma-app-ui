@@ -77,7 +77,7 @@ const materialModules = [
   ],
   exports: [
     ...materialModules
-  ],
+  ]
 })
 
 export class AngularMaterialModule { }
